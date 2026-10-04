@@ -51,21 +51,45 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    /* Full wallpaper */
+    /* Full wallpaper — woman sits on the left half of the art */
     .bg {
       position: fixed;
-      inset: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
       background-image: url('https://ik.imagekit.io/BassaniStudios/BASSANI%20STUDIOS%20WEBSITE/ChatGPT%20Image%2025%20de%20set.%20de%202026,%2021_39_30.png?updatedAt=1790383315372');
       background-size: cover;
-      background-position: center;
+      background-position: 35% center;
       background-repeat: no-repeat;
       z-index: 0;
       pointer-events: none;
     }
 
+    /* Mobile: dedicated image + stable height (no zoom on scroll) */
+    @media (max-width: 600px) {
+      .bg {
+        background-image: url('https://ik.imagekit.io/BassaniStudios/BASSANI%20STUDIOS%20WEBSITE/BASSANI%20STUDIOS%20OFICIAL%20PHOTO%20-%20Copy.png');
+        background-position: center center;
+        height: 100svh;
+      }
+    }
+
+    /* Desktop wide */
+    @media (min-width: 900px) {
+      .bg {
+        background-position: center center;
+      }
+    }
+
     .bg-overlay {
       position: fixed;
-      inset: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
       background:
         radial-gradient(ellipse at 50% 20%, rgba(0, 245, 255, 0.12) 0%, transparent 55%),
         radial-gradient(ellipse at 20% 80%, rgba(184, 244, 248, 0.08) 0%, transparent 50%),
@@ -74,14 +98,28 @@
       pointer-events: none;
     }
 
+    @media (max-width: 600px) {
+      .bg-overlay {
+        height: 100svh;
+      }
+    }
+
     /* Mouse trail canvas — bigger + more glow */
     #trail-canvas {
       position: fixed;
-      inset: 0;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
+      height: 100dvh;
       z-index: 2;
       pointer-events: none;
+    }
+
+    @media (max-width: 600px) {
+      #trail-canvas {
+        height: 100svh;
+      }
     }
 
     /* Main content */
@@ -459,7 +497,7 @@
       animate();
     })();
 
-    /* ========== MUSIC PLAYER (light) — autoplay + unlock on any gesture ========== */
+    /* ========== MUSIC PLAYER (light) — only starts on Play button ========== */
     (function () {
       const PLAYLIST = [
         {
@@ -480,10 +518,6 @@
 
       let trackIndex = 0;
       let playing = false;
-      let unlocked = false;
-
-      audio.setAttribute('playsinline', '');
-      audio.setAttribute('webkit-playsinline', '');
 
       function load(i) {
         trackIndex = ((i % PLAYLIST.length) + PLAYLIST.length) % PLAYLIST.length;
@@ -498,17 +532,7 @@
       }
 
       function play() {
-        const p = audio.play();
-        if (p && typeof p.then === 'function') {
-          p.then(() => {
-            unlocked = true;
-            setPlayingUI(true);
-          }).catch(() => {
-            setPlayingUI(false);
-          });
-        } else {
-          setPlayingUI(true);
-        }
+        audio.play().then(() => setPlayingUI(true)).catch(() => setPlayingUI(false));
       }
 
       function pause() {
@@ -525,40 +549,14 @@
       load(0);
       audio.volume = 0.65;
 
-      // Try autoplay immediately + a few retries (some browsers allow after load)
-      function tryAutoplay() {
-        if (playing) return;
-        play();
-      }
-      tryAutoplay();
-      setTimeout(tryAutoplay, 300);
-      setTimeout(tryAutoplay, 800);
-      window.addEventListener('load', tryAutoplay);
-      document.addEventListener('DOMContentLoaded', tryAutoplay);
-
-      // Unlock audio on ANY user gesture (required by most browsers)
-      function unlockAudio() {
-        if (unlocked && playing) return;
-        play();
-      }
-      const gestureEvents = ['pointerdown', 'touchstart', 'mousedown', 'keydown', 'click'];
-      gestureEvents.forEach(evt => {
-        document.addEventListener(evt, unlockAudio, { once: false, passive: true });
-      });
-
-      playBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
+      playBtn.addEventListener('click', () => {
         if (playing) pause();
         else play();
       });
 
-      stopBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        stop();
-      });
+      stopBtn.addEventListener('click', stop);
 
-      nextBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
+      nextBtn.addEventListener('click', () => {
         load(trackIndex + 1);
         play();
       });
