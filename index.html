@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bassani's Pages | Links</title>
+  <meta name="description" content="Bassani's Pages — all links in one place.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/setembro/ChatGPT%20Image%2026%20de%20set.%20de%202026,%2001_31_52.png">
+  <style>
+    :root {
+      --cyan: #00F5FF;
+      --cyan-soft: #7DF9FF;
+      --cyan-dark: #00C4CC;
+      --salmon: #FF7A7A;
+      --pastel-cyan: #B8F4F8;
+      --pastel-pink: #FFD6E8;
+      --pastel-lilac: #E0D4FF;
+      --bg-dark: #0a0f14;
+      --text: #FFFFFF;
+      --text-muted: #B8E8EC;
+      --font-display: 'Orbitron', system-ui, sans-serif;
+      --font-body: 'Rajdhani', system-ui, sans-serif;
+      --shadow-neon: 0 0 20px rgba(0, 245, 255, 0.55), 0 0 45px rgba(0, 245, 255, 0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      overflow-x: hidden;
+      overflow-y: auto;
+      height: auto;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-dark);
+      color: var(--text);
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      line-height: 1.5;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Full wallpaper */
+    .bg {
+      position: fixed;
+      inset: 0;
+      background-image: url('https://ik.imagekit.io/BassaniStudios/BASSANI%20STUDIOS%20WEBSITE/ChatGPT%20Image%2025%20de%20set.%20de%202026,%2021_39_30.png?updatedAt=1790383315372');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .bg-overlay {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 20%, rgba(0, 245, 255, 0.12) 0%, transparent 55%),
+        radial-gradient(ellipse at 20% 80%, rgba(184, 244, 248, 0.08) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(10, 15, 20, 0.35) 0%, rgba(10, 15, 20, 0.72) 55%, rgba(10, 15, 20, 0.88) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Mouse trail canvas — bigger + more glow */
+    #trail-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Main content */
+    .page {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      max-width: 520px;
+      padding: 2.5rem 1.25rem 6rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.75rem;
+    }
+
+    /* Bot / logo */
+    .bot-wrap {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+
+    .bot-wrap::before,
+    .bot-wrap::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: var(--cyan);
+      border-right-color: rgba(0, 245, 255, 0.35);
+      animation: spin 1.6s linear infinite;
+      box-shadow: 0 0 18px rgba(0, 245, 255, 0.35);
+    }
+
+    .bot-wrap::before {
+      inset: -6px;
+    }
+
+    .bot-wrap::after {
+      inset: -18px;
+      border-top-color: var(--pastel-cyan);
+      border-right-color: rgba(184, 244, 248, 0.4);
+      animation: spin-rev 2.4s linear infinite;
+      box-shadow: 0 0 22px rgba(184, 244, 248, 0.3);
+    }
+
+    .bot {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: radial-gradient(circle, #0a0f14 40%, transparent 70%);
+      border: 2px solid rgba(0, 245, 255, 0.55);
+      padding: 6px;
+      box-shadow:
+        0 0 25px rgba(0, 245, 255, 0.7),
+        0 0 55px rgba(0, 245, 255, 0.35),
+        0 0 90px rgba(0, 245, 255, 0.2);
+      animation: bot-pulse 2.2s ease-in-out infinite;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes bot-pulse {
+      0%, 100% { box-shadow: 0 0 25px rgba(0,245,255,0.7), 0 0 55px rgba(0,245,255,0.35), 0 0 90px rgba(0,245,255,0.2); }
+      50% { box-shadow: 0 0 35px rgba(0,245,255,0.9), 0 0 70px rgba(0,245,255,0.5), 0 0 110px rgba(0,245,255,0.3); }
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes spin-rev { to { transform: rotate(-360deg); } }
+
+    /* Title — Bassani's (salmon) + Pages (cyan flicker) */
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 7vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.15;
+      margin: 0.2rem 0 0.4rem;
+    }
+
+    h1 .salmon {
+      color: var(--salmon);
+      text-shadow:
+        0 0 10px var(--salmon),
+        0 0 25px rgba(255, 122, 122, 0.65),
+        0 0 45px rgba(255, 122, 122, 0.35);
+    }
+
+    h1 .neon {
+      color: var(--cyan);
+      text-shadow:
+        0 0 10px var(--cyan),
+        0 0 25px var(--cyan),
+        0 0 50px rgba(0, 245, 255, 0.6),
+        0 0 90px rgba(0, 245, 255, 0.35);
+      animation: flicker 4s infinite;
+    }
+
+    @keyframes flicker {
+      0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        opacity: 1;
+        text-shadow:
+          0 0 10px var(--cyan),
+          0 0 25px var(--cyan),
+          0 0 50px rgba(0, 245, 255, 0.6),
+          0 0 90px rgba(0, 245, 255, 0.35);
+      }
+      20%, 24%, 55% {
+        opacity: 0.72;
+        text-shadow: 0 0 4px var(--cyan);
+      }
+      21%, 56% {
+        opacity: 0.9;
+        text-shadow:
+          0 0 8px var(--cyan),
+          0 0 18px var(--cyan);
+      }
+    }
+
+    .subtitle {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--pastel-cyan);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Big neon cyan buttons */
+    .links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      margin-top: 0.5rem;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 64px;
+      padding: 1.05rem 1.5rem;
+      font-family: var(--font-display);
+      font-size: clamp(0.95rem, 3.2vw, 1.15rem);
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #041018;
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--cyan-soft) 45%, var(--pastel-cyan) 100%);
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      border-radius: 18px;
+      box-shadow:
+        0 0 18px rgba(0, 245, 255, 0.55),
+        0 0 40px rgba(0, 245, 255, 0.3),
+        0 0 70px rgba(0, 245, 255, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .link-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%);
+      transform: translateX(-120%);
+      transition: transform 0.55s ease;
+    }
+
+    .link-btn:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow:
+        0 0 28px rgba(0, 245, 255, 0.85),
+        0 0 60px rgba(0, 245, 255, 0.5),
+        0 0 100px rgba(0, 245, 255, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55);
+      filter: brightness(1.08);
+    }
+
+    .link-btn:hover::before {
+      transform: translateX(120%);
+    }
+
+    .link-btn:active {
+      transform: translateY(-1px) scale(1.01);
+    }
+
+    /* Lightweight music player */
+    .music-player {
+      position: fixed;
+      bottom: 1.4rem;
+      right: 1.4rem;
+      z-index: 50;
+      background: rgba(8, 14, 20, 0.82);
+      border: 1px solid rgba(0, 245, 255, 0.4);
+      border-radius: 50px;
+      padding: 0.45rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-neon);
+    }
+
+    .music-player button {
+      background: none;
+      border: none;
+      color: var(--cyan);
+      font-size: 1.05rem;
+      cursor: pointer;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: transform 0.2s, color 0.2s, background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .music-player button:hover {
+      color: var(--pastel-cyan);
+      transform: scale(1.15);
+      background: rgba(0, 245, 255, 0.12);
+    }
+
+    .music-player #music-play {
+      font-size: 1.15rem;
+    }
+
+    /* Footer tiny */
+    .footer {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      opacity: 0.7;
+      letter-spacing: 1px;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .page { padding: 1.8rem 1rem 5.5rem; }
+      .bot-wrap { width: 120px; height: 120px; }
+      .bot { width: 100px; height: 100px; }
+      .link-btn { min-height: 58px; padding: 0.95rem 1.2rem; letter-spacing: 1.8px; }
+      .music-player { bottom: 1rem; right: 1rem; padding: 0.35rem 0.55rem; }
+      .music-player button { width: 30px; height: 30px; font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="bg-overlay" aria-hidden="true"></div>
+  <canvas id="trail-canvas"></canvas>
+
+  <main class="page">
+    <div class="bot-wrap">
+      <img class="bot" src="https://ik.imagekit.io/BassaniStudios/bovary%20pic%20meet/setembro/ChatGPT%20Image%2026%20de%20set.%20de%202026,%2001_31_52.png" alt="Bassani Studios Bot" width="120" height="120">
+    </div>
+
+    <h1><span class="salmon">Bassani's</span> <span class="neon">Pages</span></h1>
+    <p class="subtitle">All links · one place</p>
+
+    <nav class="links" aria-label="Main links">
+      <a class="link-btn" href="https://bassanistudios.github.io/BassaniStudios/" target="_blank" rel="noopener">Bassani Studios</a>
+      <a class="link-btn" href="https://www.youtube.com/@BassaniStudio" target="_blank" rel="noopener">Youtube Channel</a>
+      <a class="link-btn" href="https://www.instagram.com/bassani_studios/" target="_blank" rel="noopener">Instagram</a>
+      <a class="link-btn" href="https://discord.com/invite/4RJHKCpkfa" target="_blank" rel="noopener">My Discord Server</a>
+      <a class="link-btn" href="https://bovaryclub.github.io/Crew/" target="_blank" rel="noopener">Bovary Club Society</a>
+    </nav>
+
+    <p class="footer">© 2026 Bassani Studios</p>
+  </main>
+
+  <!-- Lightweight music player: play / pause / stop / next -->
+  <div class="music-player" aria-label="Music player">
+    <button type="button" id="music-play" aria-label="Play/Pause">▶</button>
+    <button type="button" id="music-stop" aria-label="Stop">■</button>
+    <button type="button" id="music-next" aria-label="Next">›</button>
+    <audio id="bg-music" preload="auto"></audio>
+  </div>
+
+  <script>
+    /* ========== MOUSE TRAIL — larger + stronger cyan glow ========== */
+    (function () {
+      const canvas = document.getElementById('trail-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      const maxParticles = 70;
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      class Particle {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+          this.size = Math.random() * 7 + 2.5;          // bigger
+          this.speedX = (Math.random() - 0.5) * 2.8;
+          this.speedY = (Math.random() - 0.5) * 2.8;
+          this.life = 1;
+          this.decay = Math.random() * 0.022 + 0.012;
+          // mostly cyan + soft pastel
+          const r = Math.random();
+          if (r > 0.75) this.color = '184, 244, 248';   // pastel cyan
+          else if (r > 0.5) this.color = '125, 249, 255';
+          else this.color = '0, 245, 255';
+        }
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+          this.life -= this.decay;
+          this.size *= 0.96;
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${this.color}, ${this.life * 0.95})`;
+          ctx.shadowBlur = 22;                          // more glow
+          ctx.shadowColor = `rgba(${this.color}, 0.95)`;
+          ctx.fill();
+          // extra soft outer glow
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size * 1.8, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${this.color}, ${this.life * 0.18})`;
+          ctx.shadowBlur = 30;
+          ctx.fill();
+        }
+      }
+
+      document.addEventListener('mousemove', (e) => {
+        for (let i = 0; i < 3; i++) {
+          if (particles.length < maxParticles) {
+            particles.push(new Particle(e.clientX, e.clientY));
+          }
+        }
+      });
+
+      // touch support
+      document.addEventListener('touchmove', (e) => {
+        const t = e.touches[0];
+        if (!t) return;
+        for (let i = 0; i < 2; i++) {
+          if (particles.length < maxParticles) {
+            particles.push(new Particle(t.clientX, t.clientY));
+          }
+        }
+      }, { passive: true });
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles = particles.filter(p => p.life > 0);
+        particles.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+
+    /* ========== MUSIC PLAYER (light) — autoplay + unlock on any gesture ========== */
+    (function () {
+      const PLAYLIST = [
+        {
+          title: 'Sam Fender, Olivia Dean — Rein Me In',
+          url: 'https://ik.imagekit.io/BassaniStudios/music/Sam%20Fender,%20Olivia%20Dean%20-%20Rein%20Me%20In%20(Official%20Video)%20-%20SamFenderVEVO.mp3'
+        },
+        {
+          title: 'Glass — Daughter',
+          url: 'https://ik.imagekit.io/BassaniStudios/music/Glass%20-%20Daughter.mp3'
+        }
+      ];
+
+      const audio = document.getElementById('bg-music');
+      const playBtn = document.getElementById('music-play');
+      const stopBtn = document.getElementById('music-stop');
+      const nextBtn = document.getElementById('music-next');
+      if (!audio || !playBtn) return;
+
+      let trackIndex = 0;
+      let playing = false;
+      let unlocked = false;
+
+      audio.setAttribute('playsinline', '');
+      audio.setAttribute('webkit-playsinline', '');
+
+      function load(i) {
+        trackIndex = ((i % PLAYLIST.length) + PLAYLIST.length) % PLAYLIST.length;
+        audio.src = PLAYLIST[trackIndex].url;
+        audio.load();
+      }
+
+      function setPlayingUI(isPlaying) {
+        playing = isPlaying;
+        playBtn.innerHTML = isPlaying ? '❚❚' : '▶';
+        playBtn.setAttribute('aria-label', isPlaying ? 'Pause' : 'Play');
+      }
+
+      function play() {
+        const p = audio.play();
+        if (p && typeof p.then === 'function') {
+          p.then(() => {
+            unlocked = true;
+            setPlayingUI(true);
+          }).catch(() => {
+            setPlayingUI(false);
+          });
+        } else {
+          setPlayingUI(true);
+        }
+      }
+
+      function pause() {
+        audio.pause();
+        setPlayingUI(false);
+      }
+
+      function stop() {
+        audio.pause();
+        audio.currentTime = 0;
+        setPlayingUI(false);
+      }
+
+      load(0);
+      audio.volume = 0.65;
+
+      // Try autoplay immediately + a few retries (some browsers allow after load)
+      function tryAutoplay() {
+        if (playing) return;
+        play();
+      }
+      tryAutoplay();
+      setTimeout(tryAutoplay, 300);
+      setTimeout(tryAutoplay, 800);
+      window.addEventListener('load', tryAutoplay);
+      document.addEventListener('DOMContentLoaded', tryAutoplay);
+
+      // Unlock audio on ANY user gesture (required by most browsers)
+      function unlockAudio() {
+        if (unlocked && playing) return;
+        play();
+      }
+      const gestureEvents = ['pointerdown', 'touchstart', 'mousedown', 'keydown', 'click'];
+      gestureEvents.forEach(evt => {
+        document.addEventListener(evt, unlockAudio, { once: false, passive: true });
+      });
+
+      playBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (playing) pause();
+        else play();
+      });
+
+      stopBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        stop();
+      });
+
+      nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        load(trackIndex + 1);
+        play();
+      });
+
+      audio.addEventListener('ended', () => {
+        load(trackIndex + 1);
+        play();
+      });
+
+      audio.addEventListener('playing', () => setPlayingUI(true));
+      audio.addEventListener('pause', () => {
+        if (!audio.ended) setPlayingUI(false);
+      });
+    })();
+  </script>
+</body>
+</html>
